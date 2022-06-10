@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/order_shop.css">
+    <link rel="stylesheet" media="screen and (max-width: 1170px)" href="css/order_shop_respon.css">
+
+    <title>Document</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
+        <div class="container">
+          <div id="logo">
+            <img src="image/logo.jpg" alt="MyOnlineMeal.com">
+            <a href="#">{{uname}} {{lname}}</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Log Out</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact Us</a>
+            </li>
+        </div>
+        </div>
+      </nav> 
+
+    <input type="hidden" name="list" value="{{list}}" id="list">
+    <input type="hidden" name="uEmail" value="{{uEmail}}" id="uEmail">
+    <input type="hidden" name="item" value="{{item}}" id="item">
+
+    <section id="services-container">
+        <h1 class="h-primary center">Choose Shop</h1>
+        <div id="services">
+
+          {{!-- {{#each list}}
+                <div class="box">
+                <div><img src="image/oil.jpg" alt="Oil Image"></div>
+                  <div>
+                    <p class="center"><h5 style="text-decoration: underline;">Name of shop : </h5>{{this.shop}}</p>
+                    <p class="center"><h5 style="text-decoration: underline;">Name of shop Owner : </h5>{{this.fname}} {{this.lname}}</p>
+                    <p class="center"><h5 style="text-decoration: underline;">Address of shop : </h5>{{this.address}}</p>
+                    <p class="center"><h5 style="text-decoration: underline;">Contact Number : </h5>{{this.ph}}</p>
+                  </div>
+                <div class="order">
+                  <form action="/placeOrder" method="post">
+                    <input type="hidden" name="uEmail" value="{{uEmail}}">
+                  <input type="hidden" name="item" value="{{item}}">
+                  <input type="submit" value="order" class="btn">
+                  </form>
+                </div>
+            </div>   
+          {{/each}} --}}
+
+            {{!-- <div class="box">
+                <div><img src="image/oil.jpg" alt="Oil Image"></div>
+                  <div>
+                    <p class="center"><h5 style="text-decoration: underline;">Name of shop : </h5>Dummy Name</p>
+                    <p class="center"><h5 style="text-decoration: underline;">Name of shop Owner : </h5>Dummy Name</p>
+                    <p class="center"><h5 style="text-decoration: underline;">Address of shop : </h5>22 'C' Road Bamangachi, Salkia, Howrah - 711106</p>
+                    <p class="center"><h5 style="text-decoration: underline;">Contact Number : </h5>Dummy Number</p>
+                  </div>
+                <div class="order">
+                  <form action="/placeOrder" method="post">
+                    <input type="hidden" name="uEmail" value="{{uEmail}}">
+                  <input type="hidden" name="item" value="{{item}}">
+                  <input type="submit" value="order" class="btn">
+                  </form>
+                </div>
+            </div>    --}}
+        </div>
+    </section>
+
+    <section id="contact">
+        <h1 class="h-primary center">Contact Us</h1>
+        <div id="contact-box">
+            <form action="">
+                <div class="form-group">
+                    <label for="name">Name: </label>
+                    <input type="text" name="name" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email: </label>
+                    <input type="email" name="name" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number: </label>
+                    <input type="phone" name="name" id="phone" placeholder="Enter your phone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message: </label>
+                    <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                </div>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <div class="center">
+            Copyright &copy; www.myOnlineMeal.com. All rights reserved!
+        </div>
+    </footer>
+  <script src="js/order_shop_add.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+</body>
+</html>

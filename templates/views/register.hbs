@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/registration.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="registration">
+        <h1>
+            Registration Form
+        </h1>
+    </div>
+    <div class="button-box">
+        <div id="btn"></div>
+        <button type="button" class="toggle-btn" onclick="vendor()">As Vendor</button>
+        <button type="button" class="toggle-btn" onclick="user()">As User</button>
+    </div>
+    <div class="main" id="main">
+        <form action="/vendor_Reg" method="post" id="vendor-register" enctype="multipart/form-data">
+            <div id="name">
+                <h2 class="name">Name</h2>
+                <input type="text" class="fname" id="fname" name="vfirstName"><br>
+                <label for="fname" class="fnamelb">First Name</label>
+                <input type="text" class="lname" id="lname" name="vlastName">
+                <label for="lname" class="lnamelb">Last Name</label>
+            </div>
+
+
+            <label for="shname"><h2 class="name">Shop Name</h2></label>
+            <input type="text" class="shop" id="shname" name="vshopName">
+                
+            <label for="email"><h2 class="name">Email</h2></label>
+            <input type="email" class="email" id="email" name="vemail">
+
+            <h2 class="name">Phone</h2>
+            <input type="text" class="code" id="phone" name="vcode" size="2">
+            <label for="phone" class="area-code">Area Code</label>
+            <input type="text" class="number" id="num" name="vph" size="10">
+            <label for="num" class="Phone-number">Phone Number</label>
+
+            <div class="cen">
+                <h2 class="name">Gender</h2>
+            <label class="radio">
+                <input type="radio" class="radio-two" name="vgender" checked="checked" value="Male"><span class="checkmark">Male</span>
+            </label>
+            <label class="radio">
+                <input type="radio" class="radio-two" name="vgender" value="Female"><span class="checkmark">Female</span>
+            </label>
+            </div>
+
+            <label for="vadd"><h2 class="name">Address</h2></label>
+            <textarea name="vaddress" class="address" id="vadd" cols="60" rows="2" value="address"></textarea>
+
+            <div class="pascen">
+                <div>
+                    <label for="vpas"><h2 class="name">Password</h2></label>
+                    <input type="password" class="password" id="vpas" name="vpas">
+                </div>
+
+                <div>
+                    <label for="vcpas"><h2 class="name cname">Conform Password</h2></label>
+                    <input type="password" class="cpassword" id="vcpas" name="vcpas">
+                </div>
+            </div>
+
+            <label for="vimg"><h2 class="name">Upload Image</h2></label>
+            <input type="file" class="img" id="vimg" name="vimg">
+
+            {{!-- <label for="img"><h2 class="name">Upload Image</h2></label>
+            <input type="file" class="img" id="uimg" name="uimg"> --}}
+
+            <div id="shutter">
+                <div class="item">
+                <h2 class="name">Oil</h2>
+                <input type="number" min="1" max="1000" step="1" value="1" class="itemPrice" name="oilPrice"><br>
+                <label for="itemPrice" class="itemPricelb">Price</label>
+                <input type="number" min="1" max="200" step="1" value="1" class="itemQuantity"  name="oilQuantity">
+                <label for="itemQuantity" class="itemQuantitylb">Quantity</label>
+            </div>
+
+            <div class="item">
+                <h2 class="name">Copy</h2>
+                <input type="number" min="1" max="1000" step="1" value="1" class="itemPrice" name="copyPrice"><br>
+                <label for="itemPrice" class="itemPricelb">Price</label>
+                <input type="number" min="1" max="200" step="1" value="1" class="itemQuantity"  name="copyQuantity">
+                <label for="itemQuantity" class="itemQuantitylb">Quantity</label>
+            </div>
+
+            <div class="item">
+                <h2 class="name">Biscuit</h2>
+                <input type="number" min="1" max="1000" step="1" value="1" class="itemPrice" name="biscuitPrice"><br>
+                <label for="itemPrice" class="itemPricelb">Price</label>
+                <input type="number" min="1" max="200" step="1" value="1" class="itemQuantity"  name="biscuitQuantity">
+                <label for="itemQuantity" class="itemQuantitylb">Quantity</label>
+            </div>
+
+            <div class="item">
+                <h2 class="name">Pen</h2>
+                <input type="number" min="1" max="1000" step="1" value="1" class="itemPrice" name="penPrice"><br>
+                <label for="itemPrice" class="itemPricelb">Price</label>
+                <input type="number" min="1" max="200" step="1" value="1" class="itemQuantity"  name="penQuantity">
+                <label for="itemQuantity" class="itemQuantitylb">Quantity</label>
+            </div>
+
+            <div class="item">
+                <h2 class="name">Rice</h2>
+                <input type="number" min="1" max="1000" step="1" value="1" class="itemPrice" name="ricePrice"><br>
+                <label for="itemPrice" class="itemPricelb">Price</label>
+                <input type="number" min="1" max="200" step="1" value="1" class="itemQuantity"  name="riceQuantity">
+                <label for="itemQuantity" class="itemQuantitylb">Quantity</label>
+            </div>
+
+            <div class="item">
+                <h2 class="name">Wheet</h2>
+                <input type="number" min="1" max="1000" step="1" value="1" class="itemPrice" name="wheetPrice"><br>
+                <label for="itemPrice" class="itemPricelb">Price</label>
+                <input type="number" min="1" max="200" step="1" value="1" class="itemQuantity"  name="wheetQuantity">
+                <label for="itemQuantity" class="itemQuantitylb">Quantity</label>
+            </div>
+
+            <li>
+                <input id="vcheck" type="checkbox" value="test" required>
+                <label for="vcheck"><h2 class="check-text">I agreed all the terms and conditions</h2></label>
+            </li>
+
+            <input type="submit" id="vreg" value="Register">
+            </div>
+        </form>
+
+        <form action="/user_Reg" method="post" id="user-register" style="visibility: hidden;" enctype="multipart/form-data">
+            <div id="name">
+                <h2 class="name">Name</h2>
+                <input type="text" class="fname" id="ufname" name="ufirstName"><br>
+                <label for="fname" class="fnamelb">First Name</label>
+                <input type="text" class="lname" id="ulname" name="ulastName">
+                <label for="lname" class="lnamelb">Last Name</label>
+            </div>
+                
+            <label for="email"><h2 class="name">Email</h2></label>
+            <input type="email" class="email" id="uemail" name="uemail">
+
+            <h2 class="name">Phone</h2>
+            <input type="text" class="code" id="uphone" name="ucode" size="2">
+            <label for="phone" class="area-code">Area Code</label>
+            <input type="text" class="number" id="unum" name="uph" size="10">
+            <label for="num" class="Phone-number">Phone Number</label>
+
+            <div class="cen">
+                <h2 class="name">Gender</h2>
+            <label class="radio">
+                <input type="radio" class="radio-two" value="Male" name="ugender" checked="checked"><span class="checkmark">Male</span>
+            </label>
+            <label class="radio">
+                <input type="radio" class="radio-two" value="Female" name="ugender"><span class="checkmark">Female</span>
+            </label>
+            </div>
+
+            <label for="uadd"><h2 class="name">Address</h2></label>
+            <textarea name="uaddress" class="address" id="uadd" cols="60" rows="2" value="address"></textarea>
+
+            <div class="pascen">
+                <div>
+                    <label for="upas"><h2 class="name">Password</h2></label>
+                    <input type="password" class="password" id="upas" name="upas">
+                </div>
+
+                <div>
+                    <label for="ucpas"><h2 class="name cname">Conform Password</h2></label>
+                    <input type="password" class="cpassword" id="ucpas" name="ucpas">
+                </div>
+            </div>
+
+            <label for="img"><h2 class="name">Upload Image</h2></label>
+            <input type="file" class="img" id="uimg" name="uimg">
+
+            <li>
+                <input id="ucheck" type="checkbox" value="test" required>
+                <label for="ucheck"><h2 class="check-text">I agreed all the terms and conditions</h2></label>
+            </li>
+
+            <input type="submit" id="ureg" value="Register 22">
+        </form>
+    </div>
+
+    <script>
+        const x=document.getElementById("vendor-register");
+        const y=document.getElementById("user-register");
+        const z=document.getElementById("btn");
+        const m=document.getElementById("main");
+        const s=document.getElementById("shutter");
+        function user()
+        {
+            y.style.left="0px";
+            z.style.left="400px";
+            x.style.visibility="hidden";
+            y.style.visibility="visible";
+            m.style.height="890px";
+            s.style.position="relative";
+            s.style.top="-800px";
+            x.style.top="-800px";
+        }
+        function vendor(){
+            x.style.left="0px";
+            y.style.left="300px";
+            z.style.left="0px";
+            y.style.visibility="hidden";
+            x.style.visibility="visible";
+            m.style.height="1800px";
+            s.style.position="relative";
+            s.style.top="0px";
+            x.style.top="0px";
+        }
+    </script>
+</body>
+</html>

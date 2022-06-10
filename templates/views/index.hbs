@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Transparent Login Form with Blur Background</title>
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	{{!-- <link rel="stylesheet" href="../../public/css/login.css"> --}}
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+	<div class="contact-form">
+		<img alt="" class="avatar" src="image/avtar.png">
+		<h2>Login</h2>
+        <div class="button-box">
+            <div id="btn"></div>
+            <button type="button" class="toggle-btn" onclick="user()">As User</button>
+            <button type="button" class="toggle-btn" onclick="vendor()">As Vendor</button>
+        </div>
+		<form action="/user_login" method="post" id="user-login">
+			<i class="fa fa-envelope fa-lg" style="color: white;"></i><input placeholder="Enter Email" type="email" id="user-email" name="uemail" required>
+			<i class="fa fa-key fa-lg" style="color: white;"></i><input placeholder="Enter Password" type="password" id="user-password" name="upassword" required>
+            <input type="submit" id="user-submit" value="Sign in">
+			<p>Do not have an account? <a href="/register">Register first.</a></p>
+		</form>
+        <form action="/vendor_login" method="post" id="vendor-login" style="visibility: hidden;">
+			<i class="fa fa-envelope fa-lg" style="color: white;"></i><input placeholder="Enter Email 22" type="email" id="vendor-email" name="vemail" required>
+			<i class="fa fa-key fa-lg" style="color: white;"></i><input placeholder="Enter Password 22" type="password" id="vendor-password" name="vpassword" required>
+            <input type="submit" id="vendor-submit" value="Sign in 22">
+			<p>Do not have an account? <a href="/register">Register first.</a></p>
+		</form>
+	</div>
+
+    <script>
+        const x=document.getElementById("user-login");
+        const y=document.getElementById("vendor-login");
+        const z=document.getElementById("btn");
+        function vendor()
+        {
+            y.style.left="10px";
+            z.style.left="150px";
+            x.style.visibility="hidden";
+            y.style.visibility="visible";
+        }
+        function user(){
+            x.style.left="10px";
+            y.style.left="500px";
+            z.style.left="0px";
+            y.style.visibility="hidden";
+            x.style.visibility="visible";
+        }
+    </script>
+</body>
+</html>
