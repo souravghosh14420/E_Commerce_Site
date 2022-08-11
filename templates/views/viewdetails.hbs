@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="css/viewDetails.css">
 
-    <title>Document</title>
+    <title>Shopify</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
         <div class="container">
           <div id="logo">
             <img src="image/logo.jpg" alt="MyOnlineMeal.com">
-            <a href="#">{{fname}} {{lname}}</a>
+            <a href="#">Shopify</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -26,13 +26,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/user_home">About</a>
+              <a class="nav-link" id="home" href="/user_home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/profilev">Profile</a>
+              <a class="nav-link" id="profile" href="/profilev">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/logoutu">Log Out</a>
+                <a class="nav-link" id="log" href="/logoutu">Log Out</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact Us</a>
@@ -44,7 +44,7 @@
         <div class="container">
           <div class="order">
             <h1>
-                Fill Order Details
+                Order Details
             </h1>
           </div>
 
@@ -145,10 +145,21 @@
     </footer>
 
   <script>
-      let per=document.getElementById("per").value;
+    let per=document.getElementById("per").value;
     if(per==="u")
-      document.getElementById("person").href="/profileu";
-    elsedocument.getElementById("person").href="/profilev";
+    {
+        document.getElementById("person").href="/profileu";
+        document.getElementById("profile").href="/profileu";
+        document.getElementById("home").href="/user_home";
+        document.getElementById("log").href="/logoutu";
+    }
+    else 
+    {
+        document.getElementById("person").href="/profilev";
+        document.getElementById("profile").href="/profilev";
+        document.getElementById("home").href="/vendor_home";
+        document.getElementById("log").href="/logoutv";
+    }
       
     </script>
 

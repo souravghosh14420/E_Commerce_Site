@@ -17,92 +17,115 @@ let newArr=obj.map((cval) =>{
         const image=`${cval.item}`;
         console.log(image);
         let img=document.createElement(`div`);
+        img.className="pic";
         let imgimg=document.createElement(`img`);
         imgimg.src=`image/${image}.jpg`;
         imgimg.alt=`${cval.item}`;
         img.appendChild(imgimg);
+        let p=document.createElement(`p`);
+        let t=document.createTextNode(`${cval.item}`);
+        p.appendChild(t);
+        p.classList.add("h-secondary","center");
+        img.appendChild(p);
         console.log(img);
 
         let body=document.createElement(`div`);
+        body.className="info";
+        
         let p1=document.createElement(`p`);
-        let p2=document.createElement(`p`);
-        let p3=document.createElement(`p`);
-        let p4=document.createElement(`p`);
-        let p5=document.createElement(`p`);
-        let p6=document.createElement(`p`);
-
-        p1.className=`center`;
-        let h=document.createElement(`h5`);
-        h.style=`text-decoration: underline;`;
-        let text=document.createTextNode(`Name of item : `);
-        h.appendChild(text);
-        p1.appendChild(h);
-        let temp=`${cval.item}`;
-        text=document.createTextNode(temp);
+        p1.classList.add("h-secondary","center");
+        p1.style="text-decoration: underline;";
+        let text=document.createTextNode(`Customer Details`);
         p1.appendChild(text);
 
-        p2.className=`center`;
-        h=document.createElement(`h5`);
-        h.style=`text-decoration: underline;`;
-        text=document.createTextNode(`Name of buyer : `);
-        h.appendChild(text);
-        p2.appendChild(h);
-        temp=`${cval.fname} ${cval.fname}`;
-        text=document.createTextNode(temp);
-        p2.appendChild(text);
+        let table=document.createElement(`table`);
+        table.id="info";
 
-        p3.className=`center`;
-        h=document.createElement(`h5`);
-        h.style=`text-decoration: underline;`;
+        let r=document.createElement('tr');
+        let c=document.createElement('td');
+        let cv=document.createElement('td');
+        c.className="h-table";
+        cv.className="value";
+        text=document.createTextNode(`Customer Name : `);
+        c.appendChild(text);
+        r.appendChild(c);
+        text=document.createTextNode(`${cval.fname} ${cval.lname}`);
+        cv.appendChild(text);
+        r.appendChild(cv);
+        table.appendChild(r);
+
+        r=document.createElement('tr');
+        c=document.createElement('td');
+        cv=document.createElement('td');
+        c.className="h-table";
+        cv.className="value";
         text=document.createTextNode(`Order Id : `);
-        h.appendChild(text);
-        p3.appendChild(h);
-        temp=`${cval.orderId}`;
-        text=document.createTextNode(temp);
-        p3.appendChild(text);
+        c.appendChild(text);
+        r.appendChild(c);
+        text=document.createTextNode(`${cval.orderId}`);
+        cv.appendChild(text);
+        r.appendChild(cv);
+        table.appendChild(r);
 
-        p4.className=`center`;
-        h=document.createElement(`h5`);
-        h.style=`text-decoration: underline;`;
-        text=document.createTextNode(`Quantity : `);
-        h.appendChild(text);
-        p4.appendChild(h);
-        temp=`${cval.quantity}`;
-        text=document.createTextNode(temp);
-        p4.appendChild(text);
-
-        p5.className=`center`;
-        h=document.createElement(`h5`);
-        h.style=`text-decoration: underline;`;
-        text=document.createTextNode(`Address : `);
-        h.appendChild(text);
-        p5.appendChild(h);
-        temp=`${cval.address}`;
-        text=document.createTextNode(temp);
-        p5.appendChild(text);
-
-        p6.className=`center`;
-        h=document.createElement(`h5`);
-        h.style=`text-decoration: underline;`;
+        r=document.createElement('tr');
+        c=document.createElement('td');
+        cv=document.createElement('td');
+        c.className="h-table";
+        cv.className="value";
         text=document.createTextNode(`Contact No. : `);
-        h.appendChild(text);
-        p6.appendChild(h);
-        temp=`${cval.contact}`;
-        text=document.createTextNode(temp);
-        p6.appendChild(text);
+        c.appendChild(text);
+        r.appendChild(c);
+        text=document.createTextNode(`+91 ${cval.contact}`);
+        cv.appendChild(text);
+        r.appendChild(cv);
+        table.appendChild(r);
+
+        r=document.createElement('tr');
+        c=document.createElement('td');
+        cv=document.createElement('td');
+        c.className="h-table";
+        cv.className="value";
+        let cvt=document.createElement('td');
+        text=document.createTextNode(`Quantity : `);
+        c.appendChild(text);
+        r.appendChild(c);
+        cvt.classList.add("value","space");
+        text=document.createTextNode(`${cval.quantity}`);
+        cvt.appendChild(text);
+        r.appendChild(cvt);
+        c=document.createElement('td');
+        c.className="h-table";
+        text=document.createTextNode(`Price : `);
+        c.appendChild(text);
+        r.appendChild(c);
+        text=document.createTextNode(`Rs. ${cval.price}`);
+        cv.appendChild(text);
+        r.appendChild(cv);
+        table.appendChild(r);
+
+        r=document.createElement('tr');
+        c=document.createElement('td');
+        cv=document.createElement('td');
+        c.className="h-table";
+        cv.className="value";
+        text=document.createTextNode(`Address : `);
+        c.appendChild(text);
+        r.appendChild(c);
+        text=document.createTextNode(`${cval.address}`);
+        cv.appendChild(text);
+        r.appendChild(cv);
+        table.appendChild(r);
 
         body.appendChild(p1);
-        body.appendChild(p2);
-        body.appendChild(p3);
-        body.appendChild(p4);
-        body.appendChild(p5);
-        body.appendChild(p6);
+        body.appendChild(table);
+
 
         let button=document.createElement(`div`);
         button.className=`order`;
         let fr=document.createElement(`form`);
         fr.action=`/arrange`;
         fr.method=`post`;
+
         let i1=document.createElement(`input`);
         i1.type="hidden";
         i1.name="email";
@@ -116,7 +139,7 @@ let newArr=obj.map((cval) =>{
         let btn=document.createElement(`input`);
         btn.className=`btn`;
         btn.type="submit";
-        btn.value=`delivered`;
+        btn.value=`Delivered`;
 
         fr.appendChild(i1);
         fr.appendChild(i2);

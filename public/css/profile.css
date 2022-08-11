@@ -105,6 +105,8 @@ footer{
     font-size: 2rem;
     padding: 12px;
     color: black;
+    text-decoration: underline;
+    text-shadow: 1px 1px gray;
 }
 
 .h-secondary{
@@ -170,8 +172,6 @@ footer{
 .inventoryInfo{
     display: flex;
     justify-content: center;
-    border: 2px solid brown;
-    border-radius: 28px;
 }
 .inventoryTable{
     width: 1500px;
@@ -200,15 +200,41 @@ footer{
 }
 
 .personal{
+    display: flex;
+    flex-direction: column;
     margin-bottom: 40px;
+}
+
+.wrap{
+    border: 2px solid brown;
+    border-radius: 28px;
+}
+
+.wrap button{
+    padding: 6px 20px;
+    border: 2px solid white;
+    background-color: brown;
+    color: white;
+    margin: 15px;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor:pointer;
+    position: relative;
+    text-align: center;
+    left: 73%;
+}
+
+.wrap button:hover{
+    color: aqua;
+    box-shadow: 0 0 5px 5px grey;
+    text-decoration: underline;
+    font-size: 1.2rem;
 }
 
 #personalDetails{
     display: flex;
     justify-content: space-around;
-    border: 2px solid brown;
-    border-radius: 28px;
-    /* box-shadow: 10px 10px 18px #888888; */
+    margin: auto;
 }
 
 .image img{
@@ -231,6 +257,8 @@ footer{
     flex-wrap: wrap;
     justify-content: space-around;
     align-content: center;
+
+    perspective: 300px;
 }
 #services .box{ 
     border: 2px solid brown;
@@ -243,12 +271,15 @@ footer{
     margin-bottom: 20px;
     /* height: 600px; */
     height: auto;
+
+    transition: transform 1s;
 }
 
 #services .box:hover{
-    width: 420px;
+    /* width: 420px;
     padding: 44px;
-    box-shadow: 20px 20px 18px #888888;
+    box-shadow: 20px 20px 18px #888888; */
+    transform: translateZ(20px);
 }
 
 #services .box img{ 
@@ -264,4 +295,108 @@ footer{
 
 #services .box .order{
     text-align: center;
+}
+
+#personalDetailTable{
+    width: auto;
+}
+
+.personalUpdate{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.name{
+    vertical-align: top;
+}
+.fname{
+    /* position: relative;
+    left: 170px;
+    top: -37px; */
+    line-height: 40px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 16px;
+}
+.lname{
+    /* position: relative;
+    left: 400px;
+    top: -80px; */
+    line-height: 40px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 16px;
+}
+.fnamelb{
+    /* position: relative; */
+    color: black;
+    text-transform: capitalize;
+    font-size: 14px;
+    /* left: 175px;
+    top: -40px; */
+}
+.lnamelb{
+    /* position: relative; */
+    color: black;
+    text-transform: capitalize;
+    font-size: 14px;
+    /* left: 160px;
+    top: -40px; */
+}
+
+.shop{
+    /* position: relative;
+    left: 170px;
+    top: -30px; */
+    line-height: 40px;
+    width: 480px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 16px;
+}
+.email{
+    /* position: relative;
+    left: 170px;
+    top: -30px; */
+    line-height: 40px;
+    width: 480px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 16px;
+}
+.number{
+    /* position: relative;
+    left: 120px;
+    top: -30px; */
+    line-height: 40px;
+    width: 240px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 16px;
+}
+.address{
+    /* position: relative;
+    left: 170px;
+    top: -30px; */
+    line-height: 40px;
+    width: 480px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 16px;
+}
+
+.bn{
+    padding: 2px 20px;
+    border: 2px solid white;
+    background-color: brown;
+    color: white;
+    margin: 17px;
+    font-size: 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.bn:hover{
+    color: aqua;
+    box-shadow: 0 0 5px 5px grey;
 }

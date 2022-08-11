@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/registration.css">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="registration">
@@ -20,49 +21,81 @@
     </div>
     <div class="main" id="main">
         <form action="/vendor_Reg" method="post" id="vendor-register" enctype="multipart/form-data">
-            <div id="name">
+            <div class="form-control" id="name">
                 <h2 class="name">Name</h2>
-                <input type="text" class="fname" id="fname" name="vfirstName"><br>
-                <label for="fname" class="fnamelb">First Name</label>
-                <input type="text" class="lname" id="lname" name="vlastName">
-                <label for="lname" class="lnamelb">Last Name</label>
+                <input type="text" class="fname" id="fname" name="vfirstName" placeholder="First Name">
+                <i class="fa-solid fa-circle-check ifn"></i>
+                <i class="fa-solid fa-circle-exclamation ifn"></i>
+                <small class="efn">Error Message</small><br>
+                {{!-- <label for="fname" class="fnamelb">First Name</label> --}}
+                <input type="text" class="lname" id="lname" name="vlastName" placeholder="Last Name">
+                <i class="fa-solid fa-circle-check iln"></i>
+                <i class="fa-solid fa-circle-exclamation iln"></i>
+                <small class="eln">Error Message</small>
+                {{!-- <label for="lname" class="lnamelb">Last Name</label> --}}
             </div>
 
+            <div class="form-control">
+                <label for="shname"><h2 class="name">Shop Name</h2></label>
+                <input type="text" class="shop" id="shname" name="vshopName">
+                <i class="fa-solid fa-circle-check is"></i>
+                <i class="fa-solid fa-circle-exclamation is"></i>
+                <small class="es">Error Message</small>
+            </div>
 
-            <label for="shname"><h2 class="name">Shop Name</h2></label>
-            <input type="text" class="shop" id="shname" name="vshopName">
-                
-            <label for="email"><h2 class="name">Email</h2></label>
-            <input type="email" class="email" id="email" name="vemail">
+            <div class="form-control">
+                <label for="email"><h2 class="name">Email</h2></label>
+                <input type="email" class="email" id="email" name="vemail">
+                <i class="fa-solid fa-circle-check ie"></i>
+                <i class="fa-solid fa-circle-exclamation ie"></i>
+                <small class="ee">Error Message</small>
+            </div>   
 
-            <h2 class="name">Phone</h2>
-            <input type="text" class="code" id="phone" name="vcode" size="2">
-            <label for="phone" class="area-code">Area Code</label>
-            <input type="text" class="number" id="num" name="vph" size="10">
-            <label for="num" class="Phone-number">Phone Number</label>
+            <div class="form-control">
+                <h2 class="name">Phone</h2>
+                <input type="text" class="code" id="phone" name="vcode" size="2" placeholder="Area Code">
+                {{!-- <label for="phone" class="area-code">Area Code</label> --}}
+                <input type="text" class="number" id="num" name="vph" size="10" placeholder="Phone Number">
+                {{!-- <label for="num" class="Phone-number">Phone Number</label> --}}
+                <i class="fa-solid fa-circle-check ip"></i>
+                <i class="fa-solid fa-circle-exclamation ip"></i>
+                <small class="ep">Error Message</small>
+
+            </div>
 
             <div class="cen">
                 <h2 class="name">Gender</h2>
-            <label class="radio">
-                <input type="radio" class="radio-two" name="vgender" checked="checked" value="Male"><span class="checkmark">Male</span>
-            </label>
-            <label class="radio">
-                <input type="radio" class="radio-two" name="vgender" value="Female"><span class="checkmark">Female</span>
-            </label>
+                <label class="radio">
+                    <input type="radio" class="radio-two" name="vgender" checked="checked" value="Male"><span class="checkmark">Male</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" class="radio-two" name="vgender" value="Female"><span class="checkmark">Female</span>
+                </label>
             </div>
 
-            <label for="vadd"><h2 class="name">Address</h2></label>
-            <textarea name="vaddress" class="address" id="vadd" cols="60" rows="2" value="address"></textarea>
+            <div class="form-control">
+                <label for="vadd"><h2 class="name">Address</h2></label>
+                <textarea name="vaddress" class="address" id="vadd" cols="60" rows="2" value="address"></textarea>
+                <i class="fa-solid fa-circle-check ia"></i>
+                <i class="fa-solid fa-circle-exclamation ia"></i>
+                <small class="ea">Error Message</small>
+            </div>
 
             <div class="pascen">
-                <div>
+                <div class="form-control">
                     <label for="vpas"><h2 class="name">Password</h2></label>
                     <input type="password" class="password" id="vpas" name="vpas">
+                    <i class="fa-solid fa-circle-check ipa"></i>
+                    <i class="fa-solid fa-circle-exclamation ipa"></i>
+                    <small class="epa">Error Message</small>
                 </div>
 
-                <div>
+                <div class="form-control">
                     <label for="vcpas"><h2 class="name cname">Conform Password</h2></label>
                     <input type="password" class="cpassword" id="vcpas" name="vcpas">
+                    <i class="fa-solid fa-circle-check icpa"></i>
+                    <i class="fa-solid fa-circle-exclamation icpa"></i>
+                    <small class="ecpa">Error Message</small>
                 </div>
             </div>
 
@@ -71,6 +104,10 @@
 
             {{!-- <label for="img"><h2 class="name">Upload Image</h2></label>
             <input type="file" class="img" id="uimg" name="uimg"> --}}
+
+            <div class="center_button">
+                <button class="button">Next</button>
+            </div>
 
             <div id="shutter">
                 <div class="item">
@@ -126,50 +163,80 @@
                 <label for="vcheck"><h2 class="check-text">I agreed all the terms and conditions</h2></label>
             </li>
 
-            <input type="submit" id="vreg" value="Register">
+            <div class="center_button">
+                <input type="submit" id="vreg" value="Register">
+            </div>
+            
             </div>
         </form>
 
         <form action="/user_Reg" method="post" id="user-register" style="visibility: hidden;" enctype="multipart/form-data">
-            <div id="name">
+            <div class="form-control" id="name">
                 <h2 class="name">Name</h2>
-                <input type="text" class="fname" id="ufname" name="ufirstName"><br>
-                <label for="fname" class="fnamelb">First Name</label>
-                <input type="text" class="lname" id="ulname" name="ulastName">
-                <label for="lname" class="lnamelb">Last Name</label>
+                <input type="text" class="fname" id="ufname" name="ufirstName" placeholder="First Name" autocomplete="off">
+                <i class="fa-solid fa-circle-check ifn"></i>
+                <i class="fa-solid fa-circle-exclamation ifn"></i>
+                <small class="efn">Error Message</small><br>
+                {{!-- <label for="fname" class="fnamelb">First Name</label> --}}
+                <input type="text" class="lname" id="ulname" name="ulastName" placeholder="Last Name" autocomplete="off">
+                <i class="fa-solid fa-circle-check iln"></i>
+                <i class="fa-solid fa-circle-exclamation iln"></i>
+                <small class="eln">Error Message</small>
+                {{!-- <label for="lname" class="lnamelb">Last Name</label> --}}
             </div>
-                
-            <label for="email"><h2 class="name">Email</h2></label>
-            <input type="email" class="email" id="uemail" name="uemail">
 
-            <h2 class="name">Phone</h2>
-            <input type="text" class="code" id="uphone" name="ucode" size="2">
-            <label for="phone" class="area-code">Area Code</label>
-            <input type="text" class="number" id="unum" name="uph" size="10">
-            <label for="num" class="Phone-number">Phone Number</label>
+            <div class="form-control">
+                <label for="email"><h2 class="name">Email</h2></label>
+                <input type="email" class="email" id="uemail" name="uemail">
+                <i class="fa-solid fa-circle-check ie"></i>
+                <i class="fa-solid fa-circle-exclamation ie"></i>
+                <small class="ee">Error Message</small>
+            </div>
+
+            <div class="form-control">
+                <h2 class="name">Phone</h2>
+                <input type="text" class="code" id="uphone" name="ucode" size="2" placeholder="Area Code">
+                {{!-- <label for="phone" class="area-code">Area Code</label> --}}
+                <input type="text" class="number" id="unum" name="uph" size="10" placeholder="Phone Number">
+                {{!-- <label for="num" class="Phone-number">Phone Number</label> --}}
+                <i class="fa-solid fa-circle-check ip"></i>
+                <i class="fa-solid fa-circle-exclamation ip"></i>
+                <small class="ep">Error Message</small>
+            </div>
 
             <div class="cen">
                 <h2 class="name">Gender</h2>
-            <label class="radio">
-                <input type="radio" class="radio-two" value="Male" name="ugender" checked="checked"><span class="checkmark">Male</span>
-            </label>
-            <label class="radio">
-                <input type="radio" class="radio-two" value="Female" name="ugender"><span class="checkmark">Female</span>
-            </label>
+                <label class="radio">
+                    <input type="radio" class="radio-two" value="Male" name="ugender" checked="checked"><span class="checkmark">Male</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" class="radio-two" value="Female" name="ugender"><span class="checkmark">Female</span>
+                </label>
             </div>
 
-            <label for="uadd"><h2 class="name">Address</h2></label>
-            <textarea name="uaddress" class="address" id="uadd" cols="60" rows="2" value="address"></textarea>
+            <div class="form-control">
+                <label for="uadd"><h2 class="name">Address</h2></label>
+                <textarea name="uaddress" class="address" id="uadd" cols="60" rows="2" value="address"></textarea>
+                <i class="fa-solid fa-circle-check ia"></i>
+                <i class="fa-solid fa-circle-exclamation ia"></i>
+                <small class="ea">Error Message</small>
+            </div>
 
             <div class="pascen">
-                <div>
+                <div class="form-control">
                     <label for="upas"><h2 class="name">Password</h2></label>
                     <input type="password" class="password" id="upas" name="upas">
+                    <i class="fa-solid fa-circle-check ipa"></i>
+                    <i class="fa-solid fa-circle-exclamation ipa"></i>
+                    <small class="epa">Error Message</small>
                 </div>
 
-                <div>
+                <div class="form-control">
                     <label for="ucpas"><h2 class="name cname">Conform Password</h2></label>
                     <input type="password" class="cpassword" id="ucpas" name="ucpas">
+                    <i class="fa-solid fa-circle-check icpa"></i>
+                    <i class="fa-solid fa-circle-exclamation icpa"></i>
+                    <small class="ecpa">Error Message</small>
                 </div>
             </div>
 
@@ -180,39 +247,12 @@
                 <input id="ucheck" type="checkbox" value="test" required>
                 <label for="ucheck"><h2 class="check-text">I agreed all the terms and conditions</h2></label>
             </li>
-
-            <input type="submit" id="ureg" value="Register 22">
+            <div class="center_button">
+                <input type="submit" id="ureg" value="Register 22">
+            </div>
         </form>
     </div>
 
-    <script>
-        const x=document.getElementById("vendor-register");
-        const y=document.getElementById("user-register");
-        const z=document.getElementById("btn");
-        const m=document.getElementById("main");
-        const s=document.getElementById("shutter");
-        function user()
-        {
-            y.style.left="0px";
-            z.style.left="400px";
-            x.style.visibility="hidden";
-            y.style.visibility="visible";
-            m.style.height="890px";
-            s.style.position="relative";
-            s.style.top="-800px";
-            x.style.top="-800px";
-        }
-        function vendor(){
-            x.style.left="0px";
-            y.style.left="300px";
-            z.style.left="0px";
-            y.style.visibility="hidden";
-            x.style.visibility="visible";
-            m.style.height="1800px";
-            s.style.position="relative";
-            s.style.top="0px";
-            x.style.top="0px";
-        }
-    </script>
+    <script src="js/registration.js"></script>
 </body>
 </html>

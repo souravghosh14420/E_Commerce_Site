@@ -63,6 +63,12 @@ app.set("views",templatePath);
 hbs.registerPartials(partialsPath);
 
 app.get("/", (req,res) => {
+    res.status(201).render(`user_home`,{
+        info: "home"
+    });
+})
+
+app.get("/login", (req,res) => {
     res.status(200).render("index");
 })
 
@@ -78,7 +84,6 @@ app.post("/user_Reg",userUpload, async (req,res) => {
 
         if(password === confirmPassword)
         {
-            console.log(req.file);
             const registerUser=new User_register(
                 {
                     fname: req.body.ufirstName,
@@ -100,7 +105,7 @@ app.post("/user_Reg",userUpload, async (req,res) => {
             });
 
             const userRegistered=await registerUser.save();
-            res.status(201).render("index");
+            res.status(201).redirect("/login");
         }
         else{
             res.send(`Passwords are not matching....`);
@@ -180,7 +185,7 @@ app.post("/vendor_Reg", vendorUpload, async (req,res) => {
                 }
             });
 
-            res.status(201).render("index");
+            res.status(201).redirect("/login");
         }
         else{
             res.send(`Passwords are not matching....`);
@@ -192,12 +197,22 @@ app.post("/vendor_Reg", vendorUpload, async (req,res) => {
     }
 })
 
-app.get("/user_home", (req,res) => {
-    res.status(200).render("user_home");
+app.get("/user_home",authu, (req,res) => {
+    res.status(201).render(`user_home`, {
+            uname: `${req.user.fname}`,
+            lname: `${req.user.lname}`,
+            uEmail: `${req.user.email}`
+        });
 })
 
-app.get("/vendor_home", (req,res) => {
-    res.status(200).render("vendor_home");
+app.get("/vendor_home",authv, (req,res) => {
+    const arr=JSON.stringify(req.user.order);
+    res.status(201).render(`vendor_home`, {
+        uname: `${req.user.fname}`,
+        lname: `${req.user.lname}`,
+        email: `${req.user.email}`,
+        list: `${arr}`
+    });
 })
 
 app.post("/user_login", async (req,res) => {
@@ -218,14 +233,10 @@ app.post("/user_login", async (req,res) => {
 
         if(isMatch)
         {
-            res.status(201).render(`user_home`, {
-                uname: `${userEmail.fname}`,
-                lname: `${userEmail.lname}`,
-                uEmail: `${userEmail.email}`
-            });
+            res.status(201).redirect(`/user_home`);
         }
         else{
-            res.send(`Password are not matching ${password}`);
+            res.send(`Invalid login details.....`);
         }
     }
     catch(e){
@@ -255,15 +266,10 @@ app.post("/vendor_login", async (req,res) => {
 
         if(isMatch)
         {
-            res.status(201).render(`vendor_home`, {
-                uname: `${vendorEmail.fname}`,
-                lname: `${vendorEmail.lname}`,
-                email: `${email}`,
-                list: `${arr}`
-            });
+            res.status(201).redirect(`/vendor_home`);
         }
         else{
-            res.send(`Password are not matching`);
+            res.send(`Invalid login details`);
         }
     }
     catch(e){
@@ -275,9 +281,8 @@ app.get("/order_shop", (req,res) => {
     res.render(`order_shop`);
 })
 
-app.post("/order_shop", async (req,res) => {
-    // res.send(req.body.uEmail);
-    const email=req.body.uEmail;
+app.post("/order_shop",authu, async (req,res) => {
+    const email=req.user.email;
     const userEmail = await User_register.findOne({email : email});
     const allVendor = await Vendor_register.find();
     const list=JSON.stringify(allVendor);
@@ -289,32 +294,27 @@ app.post("/order_shop", async (req,res) => {
         item: `${req.body.item}`,
         list: list
     })
-
-    // res.send(`${userEmail.fname} ${userEmail.lname} ${email} ${req.body.item}`);
 })
 
 app.get("/placeOrder", (req,res) => {
     res.render("placeOrder");
 })
 
-app.post("/placeOrder", async (req,res) => {
+app.post("/placeOrder",authu, async (req,res) => {
     try{
-        const email=req.body.uEmail;
         const item=req.body.item;
         const shop=req.body.shop;
         const quantity=req.body.quantity;
         const price=req.body.price;
 
-        const userEmail = await User_register.findOne({email : email});
-
         res.render("placeOrder",{
             shop: shop,
             item: item,
-            user: email,
-            fname: userEmail.fname,
-            lname: userEmail.lname,
-            address: userEmail.address,
-            ph: userEmail.ph,
+            user: req.user.email,
+            fname: req.user.fname,
+            lname: req.user.lname,
+            address: req.user.address,
+            ph: req.user.ph,
             quantity: quantity,
             price: price
         });
@@ -324,10 +324,53 @@ app.post("/placeOrder", async (req,res) => {
     }
 })
 
-app.post("/confirm", async (req,res) => {
+app.get("/confirm",authu, async(req,res) => {
+    try{
+        const list=req.user.order;
+        const len=(list.length)-1;
+        const order=list[len].orderId;
+    
+        const userDeatils = await User_register.findOne({"order.orderId": `${order}`},{_id: 0, 'order.$': 1});
+        const vendorDeatils = await Vendor_register.findOne({"order.orderId": `${order}`},{_id: 0, 'order.$': 1});
+
+        const dt=vendorDeatils.order[0].dt;
+        const dd=dt.getDate();
+        const mm=(dt.getMonth())+1;
+        const yy=dt.getDate();
+        const hh=dt.getHours();
+        const min=dt.getMinutes();
+        const ss=dt.getSeconds();
+
+        res.render("confirm",{
+            cfname: vendorDeatils.order[0].fname,
+            clname: vendorDeatils.order[0].lname,
+            sname: userDeatils.order[0].sname,
+            item: userDeatils.order[0].item,
+            oid: order,
+
+            quantity: userDeatils.order[0].quantity,
+            price: userDeatils.order[0].price,
+
+            status: userDeatils.order[0].status,
+
+            date: `${dd}/${mm}/${yy}  ${hh}:${min}:${ss}`,
+
+            cc: vendorDeatils.order[0].contact,
+            vc: userDeatils.order[0].contact,
+
+            add: userDeatils.order[0].address,
+        });
+    }
+    catch(e){
+        res.status(400).send(e.message);
+    }
+
+});
+
+app.post("/confirm",authu, async (req,res) => {
     try{
 
-        const uemail=req.body.user;
+        const uemail=req.user.email;
         const item=req.body.item;
         const vemail=req.body.shop;
         const fname=req.body.fname;
@@ -336,20 +379,30 @@ app.post("/confirm", async (req,res) => {
         const address=req.body.address;
         const ph=req.body.ph;
         const price=req.body.price;
-        const dt= new Date();
         const orderId=uuidv4();
+        const dt=new Date();
+        const dd=dt.getDate();
+        const mm=(dt.getMonth())+1;
+        const yy=dt.getDate();
+        const hh=dt.getHours();
+        const min=dt.getMinutes();
+        const ss=dt.getSeconds();
 
-        const user = await User_register.findOne({email : uemail});
+        const date=`${dd}/${mm}/${yy}  ${hh}:${min}:${ss}`;
+        
         const vendor = await Vendor_register.findOne({email : vemail});
 
         let index=0;
-        if("copy".localeCompare(item)==0)
+
+        if("oil".localeCompare(`${item}`)==0)
+                index=0;
+        else if("copy".localeCompare(`${item}`)==0)
                 index=1;
-        else if("biscuit".localeCompare(item)==0)
+        else if("biscuit".localeCompare(`${item}`)==0)
                 index=2;
-        else if("pen".localeCompare(item)==0)
+        else if("pen".localeCompare(`${item}`)==0)
                 index=3;
-        else if("rice".localeCompare(item)==0)
+        else if("rice".localeCompare(`${item}`)==0)
                 index=4;
         else
                 index=5;
@@ -366,7 +419,6 @@ app.post("/confirm", async (req,res) => {
                     address: `${address}`,
                     contact: `${vendor.ph}`,
                     price: `${price}`
-                    // dt: `${dt}`
                 }
             }
         });
@@ -383,28 +435,24 @@ app.post("/confirm", async (req,res) => {
                     address: `${address}`,
                     contact: `${ph}`,
                     price: `${price}`
-                    // dt: `${dt}`
                 }
             }
         });
 
         const updatedQuantity=vendor.item[index].quantity-parseInt(quantity);
 
+        console.log(typeof updatedQuantity);
         console.log(updatedQuantity);
 
         const inventoryUpdate=await Vendor_register.updateOne(
             {"item.name": `${item}`},
             {
             $set: {
-                "item.$.quantity": `${updatedQuantity}`
+                "item.$.quantity": updatedQuantity
             }
         });
 
-        res.status(201).render(`user_home`, {
-            uname: `${user.fname}`,
-            lname: `${user.lname}`,
-            uEmail: `${user.email}`
-        });
+        res.status(201).redirect(`/confirm`);
     }catch(e){
         res.status(400).send(e);
     }
@@ -433,15 +481,7 @@ app.post("/arrange", async (req,res) => {
 
         const vendorEmail = await Vendor_register.findOne({email : email});
 
-        console.log(vendorEmail.order);
-
-        const arr=JSON.stringify(vendorEmail.order);
-        res.status(201).render(`vendor_home`, {
-            uname: `${vendorEmail.fname}`,
-            lname: `${vendorEmail.lname}`,
-            email: `${email}`,
-            list: `${arr}`
-        });
+        res.status(201).redirect(`/vendor_home`);
 
     }catch(e){
         res.status(400).send("ERROR");
@@ -455,7 +495,7 @@ app.get("/logoutu", authu, async (req,res) =>{
         })
         res.clearCookie("jwt");
         await req.user.save();
-        // res.render("index");
+
         res.redirect("/");
     }catch(e){
         res.status(500).send(e);
@@ -538,11 +578,10 @@ app.post("/viewdetails", async (req,res)=>{
     try{
         const per=req.body.person;
         const order=req.body.orderId;
-        console.log(order);
+        
         const userDeatils = await User_register.findOne({"order.orderId": `${order}`},{_id: 0, 'order.$': 1});
         const vendorDeatils = await Vendor_register.findOne({"order.orderId": `${order}`},{_id: 0, 'order.$': 1});
 
-        // const ulist=userDeatils.o
         console.log(userDeatils.order);
         console.log(vendorDeatils.order);
         console.log(userDeatils.order[0].contact);
@@ -565,7 +604,7 @@ app.post("/viewdetails", async (req,res)=>{
 
             add: userDeatils.order[0].address,
 
-            p: '${per}'
+            p: `${per}`
         });
     }
     catch(e){

@@ -20,7 +20,8 @@
         <div class="container">
           <div id="logo">
             <img src="image/logo.jpg" alt="MyOnlineMeal.com">
-            <a href="#">{{uname}} {{lname}}</a>
+            {{!-- <a href="#">{{uname}} {{lname}}</a> --}}
+            <a href="#">Shopify</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -29,13 +30,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" id="home" href="/vendor_home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Profile</a>
+              <a class="nav-link" id="pro" href="/profilev">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/logoutu">Log Out</a>
+                <a class="nav-link" id="log" href="/logoutv">Log Out</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact Us</a>
@@ -45,93 +46,173 @@
       </nav>
 
         <section class="details">
-            {{!-- <h1 class="h-secondary center">{{uname}}'s Profile</h1> --}}
-            <div class="personal">
-                <h1 class="h-secondary center">Personal Details</h1>
-                <div id="personalDetails">
-                <div class="info">
-                    <table id="personalDetailTable">
-                        <tr>
-                            <td><span class="h-secondary">Name :</span></td>
-                            <td>{{uname}} {{lname}}</td>
-                        </tr>
-                        <tr id="hide1">
-                            <td><span class="h-secondary">Shop :</span></td>
-                            <td>{{shop}}</td>
-                        </tr>
-                        <tr>
-                            <td><span class="h-secondary">Gender :</span></td>
-                            <td>{{gender}}</td>
-                        </tr>
-                        <tr>
-                            <td><span class="h-secondary">Email :</span></td>
-                            <td class="space">{{email}}</td>
-                            <td><span class="h-secondary">Ph No :</span></td>
-                            <td>{{ph}}</td>
-                        </tr>
-                        <tr>
-                            <td><span class="h-secondary">Address :</span></td>
-                            <td colspan="3">{{add}}</td>
-                        </tr>
-                    </table>
+            <div class="personalDetailsShowUpdate">
+                <div class="personal">
+                    <h1 class="h-primary center">Personal Details</h1>
+                    <div class="wrap">
+                        {{!-- <h1 class="h-primary center">Personal Details</h1> --}}
+                        <div id="personalDetails">
+                            <div class="info">
+                                <table id="personalDetailTable">
+                                    <tr>
+                                        <td><span class="h-secondary">Name :</span></td>
+                                        <td>{{uname}} {{lname}}</td>
+                                    </tr>
+                                    <tr id="hide1">
+                                        <td><span class="h-secondary">Shop :</span></td>
+                                        <td>{{shop}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="h-secondary">Gender :</span></td>
+                                        <td>{{gender}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="h-secondary">Email :</span></td>
+                                        <td class="space">{{email}}</td>
+                                        <td><span class="h-secondary">Ph No :</span></td>
+                                        <td>{{ph}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="h-secondary">Address :</span></td>
+                                        <td colspan="3">{{add}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="image" id="profileImage"></div>
+                        </div>
+                        {{!-- <div><button>Update Personal Details</button></div> --}}
+                    </div>
                 </div>
-                <div class="image" id="profileImage">
-                </div>
-            </div>
+
+                {{!-- <div class="personalUpdate">
+                    <h1 class="h-primary center">Update Personal Details</h1>
+                    <form action="/update_vendor_profile" method="post" enctype="multipart/form-data">
+                        <div id="updateDetails">
+                                <table id="personalDetailTable">
+                                    <tr>
+                                        <td class="name"><span class="h-secondary">Name :</span></td>
+                                        <td>
+                                            <input type="text" class="fname" id="fname" name="vfirstName" value="{{uname}}"><br>
+                                            <label for="fname" class="fnamelb">First Name</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="lname" id="lname" name="vlastName" value="{{lname}}"><br>
+                                            <label for="lname" class="lnamelb">Last Name</label>
+                                        </td>
+                                    </tr>
+                                    <tr id="hide3">
+                                        <td class="name"></label><span class="h-secondary">Shop :</span></td>
+                                        <td colspan="2">
+                                            <input type="text" class="shop" id="shname" name="vshopName" value="{{shop}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="name"><span class="h-secondary">Gender :</span></td>
+                                        <td>
+                                            <label for="radio-one">
+                                             <input type="radio" id="radio-one" name="vgender" checked="checked" value="Male"><span class="checkmark">Male</span>
+                                            </label>
+                                            <label for="radio-two">
+                                                <input type="radio" id="radio-two" name="vgender" value="Female"><span class="checkmark">Female</span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="name"><span class="h-secondary">Email :</span></td>
+                                        <td colspan="2">
+                                            <input type="email" class="email" id="email" name="vemail" value="{{email}}" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="name"><span class="h-secondary">Ph No :</span></td>
+                                        <td colspan="2">
+                                            <input type="text" class="number" id="num" name="vph" size="10" value="{{ph}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="name"><span class="h-secondary">Address :</span></td>
+                                        <td colspan="2">
+                                            <textarea name="vaddress" class="address" id="vadd" cols="60" rows="2" value="address">{{add}}</textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="name"></label><span class="h-secondary">Upload Image : </span></td>
+                                        <td colspan="2">
+                                            <input type="file" class="img" id="vimg" name="vimg">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="bn">Cancel</button>
+                                        </td>
+                                        <td>
+                                            <input class="bn" type="submit" value="Update">
+                                        </td>
+                                    </tr>
+                                </table>
+                        </div>
+                    </form>
+                </div> --}}
             </div>
 
-            <div class="inventory" id="hide2">
-                <h1 class="h-secondary center">Inventory Details</h1>
-                <div class="inventoryInfo">
-                    <table class="inventoryTable">
-                        <thead>
-                        <tr>
-                              <th><span class="h-secondary" style="color: White;">Item Name</span></th>
-                              <th><span class="h-secondary" style="color: White;">Quantity(packets) Left</span></th>
-                              <th><span class="h-secondary" style="color: White;">Price per packet</span></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><span class="h-secondary" style="text-decoration:none;">Musterd Oil</span></td>
-                            <td class="value">{{oq}} 1L Bottles left</td>
-                            <td class="value">Rs. {{op}}</td>
-                        </tr>
-                       <tr>
-                            <td><span class="h-secondary" style="text-decoration:none;">White Copy</span></td>
-                            <td class="value">{{cq}} Kg left</td>
-                            <td class="value">Rs. {{cp}}</td>
-                        </tr>
-                        <tr>
-                            <td><span class="h-secondary" style="text-decoration:none;">Biscuit</span></td>
-                            <td class="value">{{bq}} 300 gr packet left</td>
-                            <td class="value">Rs. {{bp}}</td>
-                        </tr>
-                        <tr>
-                            <td><span class="h-secondary" style="text-decoration:none;">Pen</span></td>
-                            <td class="value">{{pq}} packet (5 pen in each) left</td>
-                            <td class="value">Rs. {{pp}}</td>
-                        </tr>
-                        <tr>
-                            <td><span class="h-secondary" style="text-decoration:none;">Rice</span></td>
-                            <td class="value">{{rq}} kg left</td>
-                            <td class="value">Rs. {{rp}}</td>
-                        </tr>
-                        <tr>
-                            <td><span class="h-secondary" style="text-decoration:none;">Wheet</span></td>
-                            <td class="value">{{wq}} kg left</td>
-                            <td class="value">Rs. {{wp}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+
+            <div class="inventoryDetailsShowUpdate">
+                <div class="inventory" id="hide2">
+                    <h1 class="h-primary center">Inventory Details</h1>
+                    <div class="wrap">
+                        <div class="inventoryInfo">
+                            <table class="inventoryTable">
+                                <thead>
+                                    <tr>
+                                        <th><span class="h-secondary" style="color: White;">Item Name</span></th>
+                                        <th><span class="h-secondary" style="color: White;">Quantity(packets) Left</span></th>
+                                        <th><span class="h-secondary" style="color: White;">Price per packet</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="h-secondary" style="text-decoration:none;">Musterd Oil</span></td>
+                                        <td class="value">{{oq}} 1L Bottles left</td>
+                                        <td class="value">Rs. {{op}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="h-secondary" style="text-decoration:none;">White Copy</span></td>
+                                        <td class="value">{{cq}} Kg left</td>
+                                        <td class="value">Rs. {{cp}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="h-secondary" style="text-decoration:none;">Biscuit</span></td>
+                                        <td class="value">{{bq}} 300 gr packet left</td>
+                                        <td class="value">Rs. {{bp}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="h-secondary" style="text-decoration:none;">Pen</span></td>
+                                        <td class="value">{{pq}} packet (5 pen in each) left</td>
+                                        <td class="value">Rs. {{pp}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="h-secondary" style="text-decoration:none;">Rice</span></td>
+                                        <td class="value">{{rq}} kg left</td>
+                                        <td class="value">Rs. {{rp}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="h-secondary" style="text-decoration:none;">Wheet</span></td>
+                                        <td class="value">{{wq}} kg left</td>
+                                        <td class="value">Rs. {{wp}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        {{!-- <div><button>Update Inventory Details</button></div> --}}
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="services-container">
-        <h1 class="h-primary center">Our Services</h1>
+        <h1 class="h-primary center">Your Orders</h1>
         <div id="services">
-            <div class="box">
+            {{!-- <div class="box">
                 <img src="image/oil.jpg" alt="Oil Image">
                 <h2 class="h-secondary center">Mustard Oil</h2>
                 <table>
@@ -167,7 +248,7 @@
                         <input type="submit" value="View Details" class="btn" id="oil"> 
                       </form>
                     </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 

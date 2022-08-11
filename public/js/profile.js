@@ -4,6 +4,8 @@ const person=document.getElementById(`person`).value;
 const hide1=document.getElementById(`hide1`);
 const hide2=document.getElementById(`hide2`);
 
+
+
 if(person==="u")
 {
     hide1.style.display="none";
@@ -12,6 +14,9 @@ if(person==="u")
     im.src=`userImage/${list.image}`;
     image.appendChild(im);
 
+    document.getElementById("log").href="/logoutu";
+    document.getElementById("pro").href="/profileu";
+    document.getElementById("home").href="/user_home";
 }
 else{
     const im=document.createElement(`img`);
@@ -134,41 +139,6 @@ let newArr=arr.map((cval)=>{
         else
         i2.value="v";
 
-        // let i3=document.createElement(`input`);
-        // i3.type="hidden";
-        // i3.name="item";
-        // i3.value=`${item}`;
-
-        // let i4=document.createElement(`input`);
-        // i4.type="hidden";
-        // i4.name="quantity";
-        // i4.value=`${cval.quantity}`;
-
-        // let i5=document.createElement(`input`);
-        // i5.type="hidden";
-        // i5.name="status";
-        // i5.value=`${cval.status}`;
-
-        // let i6=document.createElement(`input`);
-        // i6.type="hidden";
-        // i6.name="address";
-        // i6.value=`${cval.address}`;
-
-        // let i7=document.createElement(`input`);
-        // i7.type="hidden";
-        // i7.name="dt";
-        // i7.value=`${cval.dt}`;
-
-        // let i8=document.createElement(`input`);
-        // i8.type="hidden";
-        // i8.name="contact";
-        // i8.value=`${cval.contact}`;
-
-        // let i9=document.createElement(`input`);
-        // i9.type="hidden";
-        // i9.name="price";
-        // i9.value=`${cval.price}`;
-
         let btn=document.createElement(`input`);
         btn.className=`btn`;
         btn.type="submit";
@@ -176,13 +146,6 @@ let newArr=arr.map((cval)=>{
 
         fr.appendChild(i1);
         fr.appendChild(i2);
-        // fr.appendChild(i3);
-        // fr.appendChild(i4);
-        // fr.appendChild(i5);
-        // fr.appendChild(i6);
-        // fr.appendChild(i7);
-        // fr.appendChild(i8);
-        // fr.appendChild(i9);
         fr.appendChild(btn);
 
         button.appendChild(fr);

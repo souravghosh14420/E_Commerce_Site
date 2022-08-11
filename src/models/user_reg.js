@@ -34,10 +34,6 @@ const userSchema=new mongoose.Schema(
             type: String,
             required: true
         },
-        // image: {
-        //     data: Buffer,
-        //     contentType: String
-        // },
         image: {
             type: String,
             required: true
@@ -82,7 +78,6 @@ userSchema.methods.generateAuthToken= async function(){
 }
 
 userSchema.pre("save", async function(next){
-    // const passworsHash=await bcrypt.hash(password,10);
     if(this.isModified("password")){
         this.password=await bcrypt.hash(this.password,10);
     this.confirmPassword=await bcrypt.hash(this.password,10);
